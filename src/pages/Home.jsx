@@ -150,6 +150,11 @@ export default function Home() {
                 </div>
             )}
 
+            <div className="flex flex-col space-y-3 p-6 pt-10">
+                <h1 className="text-xl">Все категории</h1>
+                <img src={category_card} alt="category_card"/>
+            </div>
+
             {isMobile ? (
                 <div className="p-6 space-y-5 pt-10">
                     <h1 className={"ph:text-xl"}>История Vitalis-life</h1>
