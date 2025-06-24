@@ -4,6 +4,9 @@ import message from "../assets/image/home/message.svg"
 import video_container from "../assets/image/home/Video container.png"
 import smoothie from "../assets/image/home/smoothieImage.png"
 import flower_icon from "../assets/image/home/flowerIcon.svg"
+import category_card_mobile from "../assets/image/home/Category card mobile.png"
+import category_card_mobile_2 from "../assets/image/home/Category card mobile 2.png"
+import category_card_mobile_3 from "../assets/image/home/Category card mobile 3.png"
 import category_card from "../assets/image/home/Category card.png"
 import category_card_2 from "../assets/image/home/Category card 2.png"
 import category_card_3 from "../assets/image/home/Category card 3.png"
@@ -152,9 +155,9 @@ export default function Home() {
             )}
 
             {/*<h1 className="text-xl">Все категории</h1>*/}
-            <CategoryCard title={"Соки из ростков и корней пшеницы"} description={"Укрепление здоровья"} img={category_card}/>
-            <CategoryCard title={"Топпинги"} description={"Разнообразие вкусов"} img={category_card_2}/>
-            <CategoryCard title={"Смузи"} description={"Расслабление и здоровье"} img={category_card_3}/>
+            <CategoryCard title={"Соки из ростков и корней пшеницы"} description={"Укрепление здоровья"} imgMobile={category_card_mobile} img={category_card}/>
+            <CategoryCard title={"Топпинги"} description={"Разнообразие вкусов"} imgMobile={category_card_mobile_2} img={category_card_2}/>
+            <CategoryCard title={"Смузи"} description={"Расслабление и здоровье"} imgMobile={category_card_mobile_3} img={category_card_3}/>
 
             {isMobile ? (
                 <div className="p-6 space-y-5 pt-10">

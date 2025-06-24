@@ -13,6 +13,7 @@ export default {
         "baby-powder": '#F2F5EF',
         "deep-dark": '#292A27',
         "avocado": '#B4D672',
+        "avocado-cat-btn": '#A5C763',
         "avocado-dark": '#5A7F2E'
 
       },
