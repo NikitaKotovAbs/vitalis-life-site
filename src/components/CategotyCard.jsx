@@ -39,7 +39,7 @@ const CategoryCard = ({title, description, imgMobile, img}) => {
                             alt="category_card"
                         />
 
-                        <div className="absolute inset-0 flex flex-col justify-between p-16 left-64">
+                        <div className="absolute inset-0 flex flex-col justify-between p-12 pl-28 lg:left-40">
                             <div className="space-y-3">
                                 <h1 className="font-bold md:text-3xl max-w-72">{title}</h1>
                                 <p className="text-deep-dark text-opacity-50 md:text-xl max-w-72">{description}</p>
