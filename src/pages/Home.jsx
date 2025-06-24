@@ -17,6 +17,7 @@ import section_form from "../assets/image/home/Section form.png"
 import ExpandableMenu from "../components/ExpandableMenu.jsx";
 import Arrow from "../assets/image/contacts/Arrow.svg";
 import useDeviceDetection from "../hooks/useDeviceDetection.js";
+import CategoryCard from "../components/CategotyCard.jsx";
 
 export default function Home() {
     const isMobile = useDeviceDetection();
@@ -150,10 +151,10 @@ export default function Home() {
                 </div>
             )}
 
-            <div className="flex flex-col space-y-3 p-6 pt-10">
-                <h1 className="text-xl">Все категории</h1>
-                <img src={category_card} alt="category_card"/>
-            </div>
+            {/*<h1 className="text-xl">Все категории</h1>*/}
+            <CategoryCard title={"Соки из ростков и корней пшеницы"} description={"Укрепление здоровья"} img={category_card}/>
+            <CategoryCard title={"Топпинги"} description={"Разнообразие вкусов"} img={category_card_2}/>
+            <CategoryCard title={"Смузи"} description={"Расслабление и здоровье"} img={category_card_3}/>
 
             {isMobile ? (
                 <div className="p-6 space-y-5 pt-10">
@@ -284,7 +285,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    {/* Блоки контактов (раскомментируйте при необходимости) */}
+                    {/* Блоки контактов */}
                     <div className="flex flex-col lg:flex-row gap-4 w-full ph:px-10 md:px-20 justify-center">
                         {/* Блок email */}
                         <div
