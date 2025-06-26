@@ -154,6 +154,8 @@ export default function Home() {
                 </div>
             )}
 
+
+
             {/*<h1 className="text-xl">Все категории</h1>*/}
             <CategoryCard title={"Соки из ростков и корней пшеницы"} description={"Укрепление здоровья"} imgMobile={category_card_mobile} img={category_card}/>
             <CategoryCard title={"Топпинги"} description={"Разнообразие вкусов"} imgMobile={category_card_mobile_2} img={category_card_2}/>
