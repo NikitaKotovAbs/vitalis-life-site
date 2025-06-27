@@ -62,7 +62,7 @@ const Header = () => {
                 {/* Корзина для десктопа */}
                 {isLaptop && (
                     <NavLink
-                        to="/cart"
+                        to="/корзина"
                         className="relative px-4 py-3 lg:px-5 lg:py-4 rounded-lg transition-all duration-300 hover:bg-gray-100"
                     >
                         <img
@@ -100,7 +100,7 @@ const Header = () => {
                             <li>
 
                                 <NavLink
-                                    to="/cart"
+                                    to="/корзина"
                                     className="flex items-center px-4 py-3 text-lg rounded-lg hover:bg-gray-100 transition-colors duration-300"
                                     onClick={() => setIsMobileMenuOpen(false)}
                                 >

@@ -78,6 +78,14 @@ export const useCart = () => {
         return cart.reduce((total, item) => total + item.quantity, 0);
     };
 
+    const getTotalPrice = () => {
+        return cart.reduce((total, item) => {
+            const price = item.discount > 0
+                ? item.price * (1 - item.discount / 100)
+                : item.price;
+            return total + (price * item.quantity);
+        }, 0);
+    };
     return {
         cart,
         addToCart,
@@ -85,6 +93,7 @@ export const useCart = () => {
         removeFromCart,
         getQuantity,
         clearCart,
-        getTotalItems
+        getTotalItems,
+        getTotalPrice
     };
 };

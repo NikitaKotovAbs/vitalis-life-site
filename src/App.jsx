@@ -8,6 +8,8 @@ import Recipes from "./pages/Recipes.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import Catalog from "./pages/Catalog.jsx";
 import Product from "./pages/Product.jsx";
+import Basket from "./pages/Basket.jsx";
+import Order from "./pages/Order.jsx";
 
 function App() {
     return (
@@ -20,6 +22,8 @@ function App() {
                     <Route path={"/рецепты"} element={<Recipes/>}/>
                     <Route path={"/каталог"} element={<Catalog/>}/>
                     <Route path="/каталог/:productId" element={<Product/>}/>
+                    <Route path="/корзина" element={<Basket/>}/>
+                    <Route path="/оформление-заказа" element={<Order/>}/>
                     <Route path="*" element={<PageNotFound/>}/>
                 </Route>
             </Routes>
