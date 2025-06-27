@@ -13,7 +13,7 @@ import {Link} from "react-router-dom";
 
 const AboutUs = () => {
 
-    const isMobile = useDeviceDetection();
+    const {isMobile,isLaptop} = useDeviceDetection();
 
     return (
         <div>

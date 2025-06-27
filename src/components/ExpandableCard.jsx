@@ -13,7 +13,7 @@ const ExpandableCard = ({
   // textSize = "text-xl",
   // maxWidth = "max-w-[28vw]"
 }) => {
-  const isMobile = useDeviceDetection();
+  const {isMobile,isLaptop} = useDeviceDetection();
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {

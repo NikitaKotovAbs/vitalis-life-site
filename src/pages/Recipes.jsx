@@ -11,7 +11,7 @@ import ExpandableCard from "../components/ExpandableCard.jsx";
 
 
 const Recipes = () => {
-    const isMobile = useDeviceDetection();
+    const {isMobile,isLaptop} = useDeviceDetection();
     // const [isExpanded, setIsExpanded] = useState(false);
 
     // const toggleDescription = () => {

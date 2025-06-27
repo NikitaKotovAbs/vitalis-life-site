@@ -4,11 +4,14 @@ import ProductCard from "../components/ProductCard";
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getProducts} from "../api/request/products.js";
+import {Outlet} from "react-router-dom";
+
+
 
 export default function Catalog() {
     const dispatch = useDispatch();
     const {products, status, error} = useSelector((state) => state.products);
-    const isMobile = useDeviceDetection();
+    const {isMobile, isLaptop} = useDeviceDetection();
 
     useEffect(() => {
         dispatch(getProducts());
@@ -89,6 +92,8 @@ export default function Catalog() {
                 </div>
 
             )}
+            <Outlet/>
         </div>
+
     );
 }

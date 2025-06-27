@@ -7,7 +7,7 @@ import useDeviceDetection from "../hooks/useDeviceDetection.js";
 import {Link} from "react-router-dom";
 
 const Contacts = () => {
-    const isMobile = useDeviceDetection();
+    const {isMobile,isLaptop} = useDeviceDetection();
     return (
         <div className="p-4 sm:p-8 lg:p-28 space-y-8 sm:space-y-12">
             {isMobile ? (

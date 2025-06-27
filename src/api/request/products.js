@@ -16,3 +16,15 @@ export const getProducts = createAsyncThunk(
     }
 );
 
+// Добавьте рядом с getProducts
+export const getProductById = createAsyncThunk(
+  'products/getProductById',
+  async (productId, { rejectWithValue }) => {
+    try {
+      const response = await api.get(`/product/${productId}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data?.message || error.message);
+    }
+  }
+);

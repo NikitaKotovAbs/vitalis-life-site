@@ -1,11 +1,20 @@
 import { useState, useEffect } from 'react';
 
 const useDeviceDetection = () => {
-    const [isMobile, setIsMobile] = useState(false);
+    const [deviceType, setDeviceType] = useState({
+        isMobile: false,
+        isTablet: false,
+        isLaptop: false,
+    });
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768); // 768px - breakpoint для мобильных устройств
+            const width = window.innerWidth;
+            setDeviceType({
+                isMobile: width < 768,
+                isTablet: width >= 768 && width <= 1024,
+                isLaptop: width > 1024,
+            });
         };
 
         // Проверяем сразу при монтировании
@@ -18,7 +27,7 @@ const useDeviceDetection = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    return isMobile;
+    return deviceType;
 };
 
 export default useDeviceDetection;

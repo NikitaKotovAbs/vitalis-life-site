@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import useDeviceDetection from "../hooks/useDeviceDetection.js";
 
 const CategoryCard = ({title, description, imgMobile, img}) => {
-    const isMobile = useDeviceDetection();
+    const {isMobile,isLaptop} = useDeviceDetection();
     const navigate = useNavigate();
     const handlerClick = () => {
-        navigate('категория')
+        navigate('каталог')
     }
 
     return (

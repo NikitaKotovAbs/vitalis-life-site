@@ -1,7 +1,12 @@
 // components/ProductCard.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ProductCard = ({ image, price, title }) => {
+const ProductCard = ({id, image, price, title }) => {
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate(`/каталог/${id}`)
+    }
     return (
         <div className="flex flex-col ph:w-40 lg:w-80 p-4">
             <img
@@ -14,7 +19,7 @@ const ProductCard = ({ image, price, title }) => {
                 <p className="text-gray-600 lg:text-xl line-clamp-2">{title || "Название"}</p>
                 <button
                     className="bg-avocado ph:w-32 lg:w-full h-12 py-2 text-deep-dark rounded-lg hover:bg-green-600 transition-colors mt-4"
-                    onClick={() => alert('Заглушка')}
+                    onClick={handleClick}
                 >
                     Купить
                 </button>

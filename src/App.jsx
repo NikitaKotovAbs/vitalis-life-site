@@ -7,6 +7,7 @@ import Contacts from "./pages/Contacts.jsx";
 import Recipes from "./pages/Recipes.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import Catalog from "./pages/Catalog.jsx";
+import Product from "./pages/Product.jsx";
 
 function App() {
     return (
@@ -18,7 +19,8 @@ function App() {
                     <Route path={"/контакты"} element={<Contacts/>}/>
                     <Route path={"/рецепты"} element={<Recipes/>}/>
                     <Route path={"/каталог"} element={<Catalog/>}/>
-                    <Route path="*" element={<PageNotFound />} />
+                    <Route path="/каталог/:productId" element={<Product/>}/>
+                    <Route path="*" element={<PageNotFound/>}/>
                 </Route>
             </Routes>
         </Router>

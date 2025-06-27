@@ -21,9 +21,17 @@ import ExpandableMenu from "../components/ExpandableMenu.jsx";
 import Arrow from "../assets/image/contacts/Arrow.svg";
 import useDeviceDetection from "../hooks/useDeviceDetection.js";
 import CategoryCard from "../components/CategotyCard.jsx";
-
+import { useNavigate } from 'react-router-dom';
 export default function Home() {
-    const isMobile = useDeviceDetection();
+    const {isMobile, isLaptop} = useDeviceDetection();
+    const navigate = useNavigate()
+    const handleCatalogClick = () => {
+        navigate(`/каталог`)
+    }
+
+    const handleAboutUsClick = () => {
+        navigate(`/о-нас`)
+    }
     const reviews = [
         {
             text: "«Доброго дня! Витграсс стал моим утренним ритуалом...»",
@@ -82,10 +90,16 @@ export default function Home() {
                     </p>
                     <div
                         className={"flex md:flex-row md:justify-center md:space-x-10 ph:flex-col ph:w-full ph:px-5 ph:space-y-2 md:space-y-0"}>
-                        <button className={"bg-avocado rounded-lg md:w-24 md:h-11 ph:h-14"}>
+                        <button
+                            className={"bg-avocado rounded-lg md:w-24 md:h-11 ph:h-14"}
+                            onClick={handleCatalogClick}
+                        >
                             Купить
                         </button>
-                        <button className={"border rounded-lg md:w-24 md:h-11 ph:h-14 "}>
+                        <button
+                            className={"border rounded-lg md:w-24 md:h-11 ph:h-14 "}
+                            onClick={handleAboutUsClick}
+                        >
                             Кто мы?
                         </button>
                     </div>
@@ -173,7 +187,10 @@ export default function Home() {
                         натуральные решения для улучшения
                         самочувствия.
                     </p>
-                    <button className="border rounded-lg w-full h-12 opacity-75">
+                    <button
+                        className="border rounded-lg w-full h-12 opacity-75"
+                        onClick={handleAboutUsClick}
+                    >
                         О нас
                     </button>
                 </div>
