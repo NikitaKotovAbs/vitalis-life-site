@@ -111,7 +111,7 @@ export default function Product() {
             <div className="flex ph:flex-col md:flex-row lg:justify-around gap-8">
                 <div className="md:w-1/2 lg:w-96 border">
                     <img
-                        src={`${import.meta.env.VITE_S3_ENDPOINT}/${import.meta.env.VITE_S3_BUCKET}/${product.image}`}
+                        src={`${import.meta.env.VITE_S3_ENDPOINT}/${import.meta.env.VITE_S3_BUCKET}/products/${product.image}`}
                         alt={product.title}
                         className="ph:w-full lg:w-[30vw] rounded-lg shadow-md"
                     />

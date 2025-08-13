@@ -86,7 +86,7 @@ export default function Catalog() {
                             price={product.price}
                             title={product.title}
                             discount={product.discount}
-                            image={`${import.meta.env.VITE_S3_ENDPOINT}/${import.meta.env.VITE_S3_BUCKET}/${product.image}`}
+                            image={`${import.meta.env.VITE_S3_ENDPOINT}/${import.meta.env.VITE_S3_BUCKET}/products/${product.image}`}
                         />
                     ))}
                 </div>
