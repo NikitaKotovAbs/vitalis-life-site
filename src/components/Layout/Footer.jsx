@@ -46,6 +46,8 @@ const Footer = () => {
                                 Московская обл, г. Красногорск,<br/>
                                 мкр. Опалиха, аллея Золотая, д. 1
                             </p>
+                            <p className="leading-relaxed text-sm lg:text-base">ИНН: 773104737415</p>
+                            <p className="leading-relaxed text-sm lg:text-base">ОГРНИП: 325774600129389</p>
                         </div>
                     </div>
 

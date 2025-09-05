@@ -112,7 +112,7 @@ export default function Basket() {
                                 <div className="flex flex-row gap-4 items-center">
                                     <div className="flex-shrink-0">
                                         <img
-                                            src={`${import.meta.env.VITE_S3_ENDPOINT}/${import.meta.env.VITE_S3_BUCKET}/${item.image}`}
+                                            src={`${import.meta.env.VITE_S3_ENDPOINT}/${import.meta.env.VITE_S3_BUCKET}/products/${item.image}`}
                                             alt={item.title}
                                             className="w-32 h-32 md:w-52 md:h-52 object-cover rounded-lg"
                                         />

@@ -11,9 +11,10 @@
     "dev-local": "npm run dev -- --host"
   },
   "dependencies": {
+    "@a2seven/yoo-checkout": "^1.1.4",
     "@redux-devtools/extension": "^3.3.0",
     "@reduxjs/toolkit": "^2.6.0",
-    "axios": "^1.10.0",
+    "axios": "^1.11.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
