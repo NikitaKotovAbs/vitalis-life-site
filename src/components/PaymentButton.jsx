@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { api } from '../api/config.js'
 
 const PaymentButton = ({ orderData, onSuccess, onError, disabled }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -9,8 +9,8 @@ const PaymentButton = ({ orderData, onSuccess, onError, disabled }) => {
 
         setIsLoading(true);
         try {
-            const response = await axios.post(
-                'http://localhost:8080/api/v1/public/payment/create',
+            const response = await api.post(
+                '/payment/create',
                 orderData,
                 {
                     headers: {

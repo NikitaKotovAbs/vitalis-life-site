@@ -16,20 +16,20 @@ export default function Product() {
     const quantity = getQuantity(Number(productId));
     const dispatch = useDispatch();
 
+    const handleAddToCart = () => {
+        addToCart(Number(productId), 1);
+    };
 
     const handleIncrement = () => {
-        if (quantity === 0) {
-            // Если товара нет в корзине, добавляем его с количеством 1
-            addToCart(Number(productId), 1);
-        } else {
-            // Если товар уже есть, увеличиваем количество
-            updateQuantity(Number(productId), quantity + 1);
-        }
+        updateQuantity(Number(productId), quantity + 1);
     };
 
     const handleDecrement = () => {
-        if (quantity > 0) {
+        if (quantity > 1) {
             updateQuantity(Number(productId), quantity - 1);
+        } else {
+            // Если количество становится 0, удаляем товар из корзины
+            updateQuantity(Number(productId), 0);
         }
     };
 
@@ -105,7 +105,6 @@ export default function Product() {
                 <div className="pl-20 pb-10">
                     <NavTab items={['Главная', 'Каталог', product.title]} className="mb-6"/>
                 </div>
-
             )}
 
             <div className="flex ph:flex-col md:flex-row lg:justify-around gap-8">
@@ -118,7 +117,6 @@ export default function Product() {
                 </div>
 
                 <div className="md:w-1/2 space-y-4">
-
                     <h1 className="text-2xl">{product.title}</h1>
                     <div className="flex items-center gap-2">
                         {product.discount > 0 ? (
@@ -145,7 +143,6 @@ export default function Product() {
                         </div>
                     )}
 
-
                     <div className="flex ph:flex-col lg:flex-row gap-4">
                         <div className="flex items-center ph:gap-5 lg:gap-2">
                             <img src={car} alt="car" className="h-6 w-6 flex-shrink-0"/>
@@ -161,27 +158,37 @@ export default function Product() {
                         </div>
                     </div>
 
-                    <div className="flex flex-row gap-4 text-xl">
-                        <button
-                            className={`flex items-center justify-center hover:bg-gray-400 w-10 h-10 rounded-lg transition-colors ${
-                                quantity === 0 ? 'opacity-50 cursor-not-allowed' : ''
-                            }`}
-                            onClick={handleDecrement}
-                            disabled={quantity === 0}
-                        >
-                            -
-                        </button>
+                    <div className="flex items-center gap-4 text-xl">
+                        {/* Показываем кнопки +/- только если товар уже в корзине */}
+                        {quantity > 0 ? (
+                            <>
+                                <button
+                                    className="flex items-center justify-center hover:bg-gray-400 w-10 h-10 rounded-lg transition-colors border border-gray-300"
+                                    onClick={handleDecrement}
+                                >
+                                    -
+                                </button>
 
-                        <p className="flex items-center text-gray-700 text-opacity-75 w-8 justify-center">
-                            {quantity}
-                        </p>
+                                <p className="flex items-center text-gray-700 text-opacity-75 w-8 justify-center">
+                                    {quantity}
+                                </p>
 
-                        <button
-                            className="flex items-center justify-center hover:bg-gray-400 w-10 h-10 rounded-lg transition-colors"
-                            onClick={handleIncrement}
-                        >
-                            +
-                        </button>
+                                <button
+                                    className="flex items-center justify-center hover:bg-gray-400 w-10 h-10 rounded-lg transition-colors border border-gray-300"
+                                    onClick={handleIncrement}
+                                >
+                                    +
+                                </button>
+                            </>
+                        ) : (
+                            // Показываем кнопку "Добавить в корзину" только если товара нет в корзине
+                            <button
+                                className="bg-avocado text-black px-6 py-3 rounded-lg hover:bg-avocado-dark transition-colors"
+                                onClick={handleAddToCart}
+                            >
+                                Добавить в корзину
+                            </button>
+                        )}
                     </div>
 
                     {isMobile && (

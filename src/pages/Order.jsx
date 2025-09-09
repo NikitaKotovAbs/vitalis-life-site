@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useDeviceDetection from "../hooks/useDeviceDetection.js";
 import NavTab from "../components/NavTab.jsx";
 import car_icon from "../assets/image/order/car_icon.svg";
@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useCart } from '../hooks/useCart';
 import { getProductById } from "../api/request/products.js";
 import PaymentButton from "../components/PaymentButton.jsx";
+import { downloadDocument } from "../utils/downloadDocument.js";
+import { validateOrderForm, formatPhoneNumber } from "../utils/validation.js";
+import {calculateDiscountedPrice} from "../utils/calculateDiscountedPrice.js";
 
 export default function Order() {
     const { isMobile } = useDeviceDetection();
@@ -18,16 +21,52 @@ export default function Order() {
         name: '',
         surname: '',
         email: '',
-        phone: '',
+        phone: '+7', // Начинаем с +7
         comment: '',
         address: ''
     });
+
+    const phoneRef = useRef(null);
 
     const dispatch = useDispatch();
     const { products } = useSelector((state) => state.products);
     const { cart } = useCart();
     const [cartProducts, setCartProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    // Функция для обработки изменения номера телефона
+    const handlePhoneChange = (value) => {
+        const formattedPhone = formatPhoneNumber(value);
+        handleInputChange('phone', formattedPhone);
+    };
+
+    // Обработчик события нажатия клавиш для телефона
+    const handlePhoneKeyDown = (e) => {
+        const { selectionStart, selectionEnd } = e.target;
+
+        // Запрещаем удаление символов до +7
+        if (e.key === 'Backspace' || e.key === 'Delete') {
+            if (selectionStart <= 2 && selectionEnd <= 2) {
+                e.preventDefault();
+            }
+        }
+
+        // Запрещаем вставку (Ctrl+V)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'v') {
+            setTimeout(() => {
+                const formattedPhone = formatPhoneNumber(e.target.value);
+                handleInputChange('phone', formattedPhone);
+            }, 0);
+        }
+    };
+
+    // Обработчик клика по полю телефона - устанавливаем курсор после +7
+    const handlePhoneClick = (e) => {
+        const { value, selectionStart } = e.target;
+        if (selectionStart < 2) {
+            e.target.setSelectionRange(2, 2);
+        }
+    };
 
     useEffect(() => {
         const fetchCartProducts = async () => {
@@ -62,25 +101,7 @@ export default function Order() {
 
     // Валидация формы
     const validateForm = () => {
-        const newErrors = {};
-
-        if (!orderData.name.trim()) newErrors.name = 'Имя обязательно';
-        if (!orderData.surname.trim()) newErrors.surname = 'Фамилия обязательна';
-        if (!orderData.email.trim()) {
-            newErrors.email = 'Email обязателен';
-        } else if (!/\S+@\S+\.\S+/.test(orderData.email)) {
-            newErrors.email = 'Некорректный email';
-        }
-        if (!orderData.phone.trim()) {
-            newErrors.phone = 'Телефон обязателен';
-        } else if (!/^[\+]?[0-9\s\-\(\)]{10,}$/.test(orderData.phone)) {
-            newErrors.phone = 'Некорректный телефон';
-        }
-        if (delivery && !orderData.address.trim()) {
-            newErrors.address = 'Адрес обязателен при доставке';
-        }
-
-        return newErrors;
+        return validateOrderForm(orderData, delivery);
     };
 
     const handleDeliveryClick = () => {
@@ -117,9 +138,6 @@ export default function Order() {
         }
     };
 
-    const calculateDiscountedPrice = (price, discount) => {
-        return Math.round(price * (1 - discount / 100));
-    };
 
     const getSubtotal = () => {
         return cartProducts.reduce((total, item) => {
@@ -175,7 +193,7 @@ export default function Order() {
             phone: orderData.phone,
             customerName: `${orderData.name} ${orderData.surname}`.trim(),
             deliveryType: delivery ? 'delivery' : 'pickup',
-            deliveryAddress: delivery ? orderData.address : 'Самовывоз',
+            deliveryAddress: delivery ? orderData.address : 'Московская обл, г. Красногорск, мкр. Опалиха, аллея Золотая, д. 1',
             comment: orderData.comment,
             returnUrl: `${window.location.origin}/payment-success`,
             description: `Заказ из ${cartProducts.length} товаров на сумму ${total} RUB`
@@ -259,10 +277,13 @@ export default function Order() {
 
                     <div>
                         <input
+                            ref={phoneRef}
                             type="tel"
                             placeholder="Телефон *"
                             value={orderData.phone}
-                            onChange={(e) => handleInputChange('phone', e.target.value)}
+                            onChange={(e) => handlePhoneChange(e.target.value)}
+                            onKeyDown={handlePhoneKeyDown}
+                            onClick={handlePhoneClick}
                             onBlur={() => handleBlur('phone')}
                             className={`bg-black bg-opacity-5 rounded-lg p-4 w-full ${
                                 errors.phone && touched.phone ? 'border border-red-500' : ''
@@ -377,13 +398,19 @@ export default function Order() {
 
                 <p className="text-sm text-black text-opacity-35 text-center">
                     Нажимая на кнопку, Вы даёте согласие на{' '}
-                    <a href="/public/Согласие на обработку ПД.docx" download className="underline hover:text-blue-600 cursor-pointer">
+                    <button
+                        onClick={() => downloadDocument('privacy-policy.docx', 'Политика_конфиденциальности.docx')}
+                        className="underline hover:text-blue-600 cursor-pointer bg-transparent border-none p-0 text-inherit"
+                    >
                         Обработку персональных данных
-                    </a>{' '}
+                    </button>{' '}
                     и согласны с{' '}
-                    <a href="/public/Политика конфиденциальности.docx" download className="underline hover:text-blue-600 cursor-pointer">
+                    <button
+                        onClick={() => downloadDocument('consent-processing-personal-data.docx', 'Пользовательское_соглашение.docx')}
+                        className="underline hover:text-blue-600 cursor-pointer bg-transparent border-none p-0 text-inherit"
+                    >
                         Политикой конфиденциальности
-                    </a>.
+                    </button>.
                 </p>
             </div>
         </div>
