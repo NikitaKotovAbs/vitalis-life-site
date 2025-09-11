@@ -31,17 +31,17 @@ const CategoryCard = ({title, description, imgMobile, img}) => {
                     </div>
                 </div>
             ) : (
-                <div className="flex justify-center items-center w-full">
-                    <div className="relative flex flex-col space-y-3 w-full max-w-screen-xl px-16 pt-10">
+                <div className=" flex justify-center items-center ">
+                    <div className="relative flex flex-col space-y-3 lg:w-full max-w-screen-xl md:px-16 xl:px-0 pt-10">
                         <img
-                            className="object-cover md:w-full md:h-full lg:w-[50vw] lg:h-auto object-center mx-auto"
+                            className="object-cover md:w-full md:h-full lg:w-[70%] xl:w-96 xl:h-72 lg:h-auto object-center mx-auto"
                             src={img}
                             alt="category_card"
                         />
 
-                        <div className="absolute inset-0 flex flex-col justify-between p-12 pl-28 lg:left-40">
+                        <div className="absolute inset-0 flex flex-col justify-between p-12 pl-28 xl:pl-0 lg:left-40 xl:left-5">
                             <div className="space-y-3">
-                                <h1 className="font-bold md:text-3xl max-w-72">{title}</h1>
+                                <h1 className="font-bold md:text-3xl xl:text-2xl max-w-72">{title}</h1>
                                 <p className="text-deep-dark text-opacity-50 md:text-xl max-w-72">{description}</p>
                             </div>
                             <button

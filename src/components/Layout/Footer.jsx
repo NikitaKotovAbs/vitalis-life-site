@@ -38,7 +38,7 @@ const Footer = () => {
 
                     {/* Колонка 1 - Лого и контакты (всегда сверху на мобильных) */}
                     <div className="space-y-4 lg:space-y-6">
-                        <img src={logo} alt="logotype" className="w-32 lg:w-40 h-auto"/>
+                        <img src={logo} alt="logotype" className="w-44 lg:w-40 h-auto"/>
 
                         {/* Кнопка "Наверх" */}
                         <button
@@ -58,7 +58,7 @@ const Footer = () => {
                                 Московская обл, г. Красногорск,<br/>
                                 мкр. Опалиха, аллея Золотая, д. 1
                             </p>
-                            <p className="leading-relaxed text-sm lg:text-base">ИНN: 773104737415</p>
+                            <p className="leading-relaxed text-sm lg:text-base">ИНН: 773104737415</p>
                             <p className="leading-relaxed text-sm lg:text-base">ОГРНИП: 325774600129389</p>
                         </div>
                     </div>
@@ -97,16 +97,36 @@ const Footer = () => {
                                     Политика конфиденциальности
                                 </button>
                                 <button
-                                    onClick={() => downloadDocument('consent-processing-personal-data.docx', 'Пользовательское_соглашение.docx')}
+                                    onClick={() => downloadDocument('consent-processing-personal-data.docx', 'Согласие на обработку ПД.docx')}
+                                    className="block text-sm lg:text-base text-white text-opacity-80 hover:text-opacity-100 transition cursor-pointer w-full text-left"
+                                >
+                                    Согласие на обработку ПД
+                                </button>
+                                <button
+                                    onClick={() => downloadDocument('mailing.docx', 'Согласие на получение рассылки.docx')}
+                                    className="block text-sm lg:text-base text-white text-opacity-80 hover:text-opacity-100 transition cursor-pointer w-full text-left"
+                                >
+                                    Согласие на получение рассылки
+                                </button>
+                                <button
+                                    onClick={() => downloadDocument('data-processing.docx', 'Пользовательское_соглашение.docx')}
                                     className="block text-sm lg:text-base text-white text-opacity-80 hover:text-opacity-100 transition cursor-pointer w-full text-left"
                                 >
                                     Пользовательское соглашение
+                                </button>
+                                <button
+                                    onClick={() => downloadDocument('offer.docx', 'Оферта на заключение ДКП')}
+                                    className="block text-sm lg:text-base text-white text-opacity-80 hover:text-opacity-100 transition cursor-pointer w-full text-left"
+                                >
+                                    Оферта на заключение ДКП
                                 </button>
                             </div>
 
                             <div className="pt-4 lg:pt-8 mt-4 lg:mt-auto space-y-1 text-xs lg:text-sm text-white text-opacity-60">
                                 <p>&#xA9; 2025 · Vitalis life</p>
-                                <p>Сделано DEVERGENT</p>
+                                <a href="https://devergent.net">
+                                    <p className={"block text-sm lg:text-base text-white text-opacity-80 hover:text-opacity-100 transition cursor-pointer w-full text-left"}>Сделано DEVERGENT</p>
+                                </a>
                             </div>
                         </div>
                     </div>

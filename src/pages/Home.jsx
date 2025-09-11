@@ -12,6 +12,13 @@ import category_card_2 from "../assets/image/home/Category card 2.png"
 import category_card_3 from "../assets/image/home/Category card 3.png"
 import card from "../assets/image/AboutUs/Card.png"
 import avatar from "../assets/image/home/Avatar.png"
+import avatar_2 from "../assets/image/home/Avatar_2.png"
+import avatar_3 from "../assets/image/home/Avatar_3.png"
+import avatar_4 from "../assets/image/home/Avatar_4.png"
+import avatar_5 from "../assets/image/home/Avatar_5.png"
+import avatar_6 from "../assets/image/home/Avatar_6.png"
+import avatar_7 from "../assets/image/home/Avatar_7.png"
+import avatar_8 from "../assets/image/home/Avatar_8.png"
 import InfiniteScrollingText from "../components/InfiniteScrollingText.jsx";
 import ReviewCard from "../components/ReviewCard.jsx";
 import arrow_up from "../assets/image/recipes/arrow_up.svg"
@@ -21,9 +28,12 @@ import ExpandableMenu from "../components/ExpandableMenu.jsx";
 import Arrow from "../assets/image/contacts/Arrow.svg";
 import useDeviceDetection from "../hooks/useDeviceDetection.js";
 import CategoryCard from "../components/CategotyCard.jsx";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import {useState} from "react";
+
 export default function Home() {
-    const {isMobile, isLaptop} = useDeviceDetection();
+    const {isMobile, isLaptop, isTablet} = useDeviceDetection();
+    const [openComment, setOpenComment] = useState(false);
     const navigate = useNavigate()
     const handleCatalogClick = () => {
         navigate(`/каталог`)
@@ -34,31 +44,91 @@ export default function Home() {
     }
     const reviews = [
         {
-            text: "«Доброго дня! Витграсс стал моим утренним ритуалом...»",
+            text: "«Доброго дня!" +
+                " Витграсс стал моим утренним ритуалом. Он помогает мне сосредоточиться на работе и поддерживает иммунитет." +
+                " Вкус немного необычный, но я привык. " +
+                "А здесь попробовал топпинги и удивился как можно разнообразить вкус сока. Понравилось.»",
             author: "Игорь Азарян",
             avatarSrc: avatar
         }, {
-            text: "«Доброго дня! Витграсс стал моим утренним ритуалом...»",
-            author: "Игорь Азарян",
-            avatarSrc: avatar
+            text: "«Здравствуйте!" +
+                " Я всегда искала натуральные способы улучшить здоровье, веду здоровый образ жизни уже три года." +
+                " Нашла сок из ростков пшеницы, изучила и решила попробовать. Он быстро стал отличным дополнением к моему рациону." +
+                " Я чувствую себя моложе, полнее сил! У меня появился заряд бодрости, настроение перестало скакать." +
+                " Хочу попробовать еще ваши смузи.»",
+            author: "Елена Калинина",
+            avatarSrc: avatar_2
         }, {
-            text: "«Доброго дня! Витграсс стал моим утренним ритуалом...»",
-            author: "Игорь Азарян",
-            avatarSrc: avatar
-        }, {
-            text: "«Доброго дня! Витграсс стал моим утренним ритуалом...»",
-            author: "Игорь Азарян",
-            avatarSrc: avatar
-        }, {
-            text: "«Доброго дня! Витграсс стал моим утренним ритуалом...»",
-            author: "Игорь Азарян",
-            avatarSrc: avatar
-        }, {
-            text: "«Доброго дня! Витграсс стал моим утренним ритуалом...» «Доброго дня! Витграсс стал моим утренним ритуалом...»",
-            author: "Игорь Азарян",
-            avatarSrc: avatar
+            text: "«Здравствуйте всем!" +
+                " Я веган уже 9 лет." +
+                " Люблю сыроединение." +
+                " Ассортимент в вашем инентернет-магазине - все мое!" +
+                " Натуральные смузи с разными семенами, соки из ростков и корней пшеницы, топпинги к ним - это все находка для меня и моего образа жизни!" +
+                " Всех призываю к здоровому питанию!" +
+                " Это отличный способ получить омега-3 и огромное количество редких микроэлементов, природного белка и многого другого." +
+                " Все натуральное, состав разработан идеально, разные вкусы. Просто one love!»",
+            author: "Анна Петрова",
+            avatarSrc: avatar_3
         }
     ];
+
+    const reviews_2 = [
+        {
+            text: "«Я люблю добавлять сок из витграсса в свои смузи. " +
+                "Он придает им особый вкус и делает их более питательными. " +
+                "Это мой секрет здоровья и красоты! " +
+                "Удобно брать с собой на работу. Люблю Вас!»",
+            author: " Анна Краснова",
+            avatarSrc: avatar_4
+        }, {
+            text: "«Привет!" +
+                " Я начала пить сок Витграсса несколько месяцев назад и это изменило мою жизнь!" +
+                " У меня повысился уровень энергии и я чувствую себя намного лучше." +
+                " Кожа очистилась и стала намного свежее. Рекомендую всем»",
+            author: "Роман Фролов",
+            avatarSrc: avatar_5
+        }, {
+            text: "«Всем привет!" +
+                " Про смузи: семена чиа в смузи - это просто находка!" +
+                " Они добавляют текстуру и делают напиток более густым, питательным." +
+                " Это хороший перекус." +
+                " Я чувствую себя заряженным после того как выпью." +
+                " Спасибо вам!»",
+            author: "Мария Брезнова",
+            avatarSrc: avatar_6
+        },
+        {
+            text: "«Доброго дня, я без пп жить не могу!" +
+                " Я обожаю смузи с семенами льна!" +
+                " Мне лён посоветовала моя косметолог, чтобы был детокс и увлажнение и питание в организме изнутри." +
+                " Лен очень влияет отлично на кожу, на волосы, на ногти." +
+                " Плюс я слежу за фигурой и это супер фуд для похудения." +
+                " А в виде готового смузи - это вообще идеальный завтрак для меня.»",
+            author: "Татьяна Бондарчук",
+            avatarSrc: avatar_7
+        },
+        {
+            text: "««Привет!" +
+                " Я добавляю семена льна в свои смузи уже много лет и заменяю прием пищи." +
+                " Я постоянно на ногах и смузи - это выход для меня." +
+                " В вашем инет-магазине я нашла большой выбор и в замороженном виде - это для меня находка!" +
+                " Потому что я вечером поставила в холодильник и утром у меня пара бутылок готова с собой." +
+                " Идеально! Очень удобно." +
+                " И такой выбор большой вкусов." +
+                " Вы - молодцы!»»",
+            author: "Константин Смирнов",
+            avatarSrc: avatar_8
+        },
+        {
+            text: "«Здравствуйте!" +
+                " Я всегда искала натуральные способы улучшить здоровье, веду здоровый образ жизни уже три года." +
+                " Нашла сок из ростков пшеницы, изучила и решила попробовать. Он быстро стал отличным дополнением к моему рациону." +
+                " Я чувствую себя моложе, полнее сил! У меня появился заряд бодрости, настроение перестало скакать." +
+                " Хочу попробовать еще ваши смузи.»",
+            author: "Елена Калинина",
+            avatarSrc: avatar_2
+        }
+    ]
     return (
         <>
             <div className={"bg-deep-dark bg-opacity-5"}>
@@ -169,11 +239,15 @@ export default function Home() {
             )}
 
 
-
             {/*<h1 className="text-xl">Все категории</h1>*/}
-            <CategoryCard title={"Соки из ростков и корней пшеницы"} description={"Укрепление здоровья"} imgMobile={category_card_mobile} img={category_card}/>
-            <CategoryCard title={"Топпинги"} description={"Разнообразие вкусов"} imgMobile={category_card_mobile_2} img={category_card_2}/>
-            <CategoryCard title={"Смузи"} description={"Расслабление и здоровье"} imgMobile={category_card_mobile_3} img={category_card_3}/>
+            <div className={"flex flex-col xl:flex-row justify-center xl:space-x-5 mb-10 mt-10"}>
+                <CategoryCard title={"Соки из ростков и корней пшеницы"} description={"Укрепление здоровья"}
+                              imgMobile={category_card_mobile} img={category_card}/>
+                <CategoryCard title={"Топпинги"} description={"Разнообразие вкусов"} imgMobile={category_card_mobile_2}
+                              img={category_card_2}/>
+                <CategoryCard title={"Смузи"} description={"Расслабление и здоровье"} imgMobile={category_card_mobile_3}
+                              img={category_card_3}/>
+            </div>
 
             {isMobile ? (
                 <div className="p-6 space-y-5 pt-10">
@@ -213,6 +287,55 @@ export default function Home() {
                     <img className="md:w-72 md:h-56 lg:w-[50vw] lg:h-auto" src={card} alt="card"/>
                 </div>
             )}
+
+
+            <div className="flex flex-col items-center space-y-5">
+
+                {isMobile ? (
+                    <>
+                        {openComment ? (
+
+                            <>
+
+                                <ReviewCard reviews={reviews}/>
+                                <ReviewCard reviews={reviews_2}/>
+                                <button
+                                    className="bg-avocado rounded-lg w-[90%] h-12"
+                                    onClick={() => setOpenComment(false)}
+                                >
+                                    Свернуть
+                                </button>
+                            </>
+
+                        ) : (
+                            <>
+
+                                <ReviewCard reviews={reviews}/>
+                                <button
+                                    className="bg-avocado rounded-lg w-[90%] h-12"
+                                    onClick={() => setOpenComment(true)}
+                                >
+                                    Смотреть ещё
+                                </button>
+
+                            </>
+                        )
+                        }
+                    </>
+                ) : isTablet ? (
+                    <div className="flex flex-row flex-wrap mt-20 mb-10">
+                        {/*<ReviewCard reviews={reviews}/>*/}
+                        <ReviewCard reviews={reviews_2}/>
+                    </div>
+                ) : (
+                    <div className="flex flex-row flex-wrap mt-20 mb-20">
+                        <ReviewCard reviews={reviews_2}/>
+                    </div>
+
+                )}
+
+            </div>
+
 
             <div className={"flex ph:flex-col md:flex-row md:justify-around pt-24 ph:pl-4 md:pl-0"}>
                 <div className={"flex flex-col space-y-5 md:max-w-[45vw]"}>
