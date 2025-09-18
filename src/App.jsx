@@ -10,6 +10,7 @@ import Catalog from "./pages/Catalog.jsx";
 import Product from "./pages/Product.jsx";
 import Basket from "./pages/Basket.jsx";
 import Order from "./pages/Order.jsx";
+import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/каталог/:productId" element={<Product/>}/>
                     <Route path="/корзина" element={<Basket/>}/>
                     <Route path="/оформление-заказа" element={<Order/>}/>
+                    <Route path="/payment-success" element={<PaymentSuccess/>}/>
                     <Route path="*" element={<PageNotFound/>}/>
                 </Route>
             </Routes>

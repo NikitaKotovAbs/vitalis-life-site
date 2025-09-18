@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getProductById} from "../api/request/products.js";
 import { useNavigate } from 'react-router-dom';
+import {downloadDocument} from "../utils/downloadDocument.js";
+import {calculateDiscountedPrice} from "../utils/calculateDiscountedPrice.js";
 
 export default function Basket() {
     const {isMobile} = useDeviceDetection();
@@ -62,9 +64,7 @@ export default function Basket() {
         }
     }, [cart, dispatch, products]);
 
-    const calculateDiscountedPrice = (price, discount) => {
-        return Math.round(price * (1 - discount / 100));
-    };
+
 
     const getTotalPrice = () => {
         return cartProducts.reduce((total, item) => {
@@ -192,21 +192,19 @@ export default function Basket() {
 
                             <p className="text-sm text-gray-600">
                                 Нажимая на кнопку, Вы даёте согласие на{' '}
-                                <a
-                                    href="/public/Согласие на обработку ПД.docx"
-                                    download
-                                    className="underline hover:text-blue-600 cursor-pointer"
+                                <button
+                                    onClick={() => downloadDocument('privacy-policy.docx', 'Политика_конфиденциальности.docx')}
+                                    className="underline hover:text-blue-600 cursor-pointer bg-transparent border-none p-0 text-inherit"
                                 >
                                     Обработку персональных данных
-                                </a>{' '}
+                                </button>{' '}
                                 и согласны с{' '}
-                                <a
-                                    href="/public/Политика конфиденциальности.docx"
-                                    download
-                                    className="underline hover:text-blue-600 cursor-pointer"
+                                <button
+                                    onClick={() => downloadDocument('consent-processing-personal-data.docx', 'Пользовательское_соглашение.docx')}
+                                    className="underline hover:text-blue-600 cursor-pointer bg-transparent border-none p-0 text-inherit"
                                 >
                                     Политикой конфиденциальности
-                                </a>.
+                                </button>.
                             </p>
                         </div>
                     </div>
