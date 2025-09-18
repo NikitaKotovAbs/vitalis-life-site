@@ -181,14 +181,14 @@ export default function Home() {
                             src={video_container}
                             alt="video_container"
                         />
-                        {!isMobile && (
-                            <button
-                                className="ph:absolute lg:static top-1/2 right-4 -translate-y-1/2 lg:translate-y-0 lg:mt-24 w-24 h-24 rounded-full bg-avocado "
-                                onClick={() => navigate(`/каталог`)}
-                            >
-                                Купить
-                            </button>
-                        )}
+                        {/*{!isMobile && (*/}
+                        {/*    <button*/}
+                        {/*        className="ph:absolute lg:static top-1/2 right-4 -translate-y-1/2 lg:translate-y-0 lg:mt-24 w-24 h-24 rounded-full bg-avocado "*/}
+                        {/*        onClick={() => navigate(`/каталог`)}*/}
+                        {/*    >*/}
+                        {/*        Купить*/}
+                        {/*    </button>*/}
+                        {/*)}*/}
 
                     </div>
 

@@ -48,7 +48,7 @@ const ExpandableMenu = ({
         className="flex flex-row items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors"
         onClick={toggleMenu}
       >
-        <h2 className="ph:text-base ph:max-w-60 lg:text-xl font-medium text-gray-800">
+        <h2 className="ph:text-base ph:max-w-60 lg:max-w-[80%] lg:text-xl font-medium text-gray-800">
           {title}
         </h2>
         <button
@@ -69,7 +69,7 @@ const ExpandableMenu = ({
 
       {isExpanded && (
         <div className="px-4 md:px-6 py-4 md:py-5 bg-gray-50 transition-all duration-200">
-          <div className="ph:max-w-[60vw] md:max-w-[50vw]">
+          <div className="ph:max-w-[60vw] md:max-w-[40vw] lg:max-w-[30vw]">
             {typeof content === 'string' ? formatContent(content) : content}
           </div>
         </div>
