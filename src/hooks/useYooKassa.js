@@ -11,8 +11,8 @@ export const useYooKassa = () => {
 
         try {
             // Для тестового режима используйте эти данные
-            const SHOP_ID = '1156359'; // Замените на ваш test shop_id
-            const SECRET_KEY = 'test_MmdRTvLFBiv-dehsErphz-c8gZ0ZKPiolC8iR3MHzCA'; // Замените на ваш test secret key
+            const SHOP_ID = '1156359';
+            const SECRET_KEY = 'test_MmdRTvLFBiv-dehsErphz-c8gZ0ZKPiolC8iR3MHzCA';
 
             const response = await axios.post('https://api.yookassa.ru/v3/payments', {
                 amount: {

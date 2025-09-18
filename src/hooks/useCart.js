@@ -1,10 +1,10 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 
 const CART_KEY = 'cart_items';
+const CART_UPDATED_EVENT = 'cartUpdated';
 
 export const useCart = () => {
     const [cart, setCart] = useState(() => {
-        // Инициализация из localStorage сразу при создании хука
         try {
             const savedCart = localStorage.getItem(CART_KEY);
             return savedCart ? JSON.parse(savedCart) : [];
@@ -14,14 +14,50 @@ export const useCart = () => {
         }
     });
 
-    // Автосохранение при любом изменении корзины
+
+    const syncCartFromStorage = useCallback(() => {
+        try {
+            const savedCart = localStorage.getItem(CART_KEY);
+            if (savedCart) {
+                const parsedCart = JSON.parse(savedCart);
+                setCart(parsedCart);
+            }
+        } catch (error) {
+            console.error('Ошибка синхронизации корзины:', error);
+        }
+    }, []);
+
     useEffect(() => {
         try {
             localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            window.dispatchEvent(new CustomEvent(CART_UPDATED_EVENT, {
+                detail: { cart }
+            }));
         } catch (error) {
             console.error('Ошибка сохранения корзины:', error);
         }
     }, [cart]);
+
+    useEffect(() => {
+        const handleStorageChange = (event) => {
+            if (event.key === CART_KEY && event.newValue) {
+                syncCartFromStorage();
+            }
+        };
+
+        const handleCartUpdated = (event) => {
+            // Для кастомного события обновляем состояние напрямую
+            setCart(event.detail.cart);
+        };
+
+        window.addEventListener('storage', handleStorageChange);
+        window.addEventListener(CART_UPDATED_EVENT, handleCartUpdated);
+
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            window.removeEventListener(CART_UPDATED_EVENT, handleCartUpdated);
+        };
+    }, [syncCartFromStorage]);
 
     const addToCart = (productId, quantity = 1) => {
         const productIdNum = Number(productId);
@@ -86,6 +122,7 @@ export const useCart = () => {
             return total + (price * item.quantity);
         }, 0);
     };
+
     return {
         cart,
         addToCart,
@@ -94,6 +131,7 @@ export const useCart = () => {
         getQuantity,
         clearCart,
         getTotalItems,
-        getTotalPrice
+        getTotalPrice,
+        syncCartFromStorage
     };
 };

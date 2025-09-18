@@ -36,9 +36,6 @@ export default function Home() {
     const [openComment, setOpenComment] = useState(false);
     const navigate = useNavigate()
 
-    const handleAboutUsClick = () => {
-        navigate(`/о-нас`)
-    }
     const reviews_col_1 = [
         {
             text: "«Доброго дня!" +
@@ -280,7 +277,7 @@ export default function Home() {
                     </p>
                     <button
                         className="border rounded-lg w-full h-12 opacity-75"
-                        onClick={handleAboutUsClick}
+                        onClick={() => navigate(`/о-нас`)}
                     >
                         О нас
                     </button>
@@ -297,7 +294,8 @@ export default function Home() {
                             поддержания здоровья. Откройте для себя
                             натуральные решения для улучшения
                             самочувствия.</p>
-                        <button className="border rounded-lg w-24 h-12 opacity-75">
+                        <button className="border rounded-lg w-24 h-12 opacity-75"
+                                onClick={() => navigate(`/о-нас`)}>
                             О нас
                         </button>
                     </div>
