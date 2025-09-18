@@ -39,7 +39,7 @@ export default function Home() {
     const handleAboutUsClick = () => {
         navigate(`/о-нас`)
     }
-    const reviews = [
+    const reviews_col_1 = [
         {
             text: "«Доброго дня!" +
                 " Витграсс стал моим утренним ритуалом. Он помогает мне сосредоточиться на работе и поддерживает иммунитет." +
@@ -55,7 +55,27 @@ export default function Home() {
                 " Хочу попробовать еще ваши смузи.»",
             author: "Елена Калинина",
             avatarSrc: avatar_2
-        }, {
+        },
+        {
+            text: "«Привет!" +
+                " Я начала пить сок Витграсса несколько месяцев назад и это изменило мою жизнь!" +
+                " У меня повысился уровень энергии и я чувствую себя намного лучше." +
+                " Кожа очистилась и стала намного свежее. Рекомендую всем»",
+            author: "Роман Фролов",
+            avatarSrc: avatar_5
+        }
+    ];
+
+    const reviews_col_2 = [
+        {
+            text: "«Я люблю добавлять сок из витграсса в свои смузи. " +
+                "Он придает им особый вкус и делает их более питательными. " +
+                "Это мой секрет здоровья и красоты! " +
+                "Удобно брать с собой на работу. Люблю Вас!»",
+            author: " Анна Краснова",
+            avatarSrc: avatar_4
+        },
+        {
             text: "«Здравствуйте всем!" +
                 " Я веган уже 9 лет." +
                 " Люблю сыроединение." +
@@ -66,25 +86,7 @@ export default function Home() {
                 " Все натуральное, состав разработан идеально, разные вкусы. Просто one love!»",
             author: "Анна Петрова",
             avatarSrc: avatar_3
-        }
-    ];
-
-    const reviews_2 = [
-        {
-            text: "«Я люблю добавлять сок из витграсса в свои смузи. " +
-                "Он придает им особый вкус и делает их более питательными. " +
-                "Это мой секрет здоровья и красоты! " +
-                "Удобно брать с собой на работу. Люблю Вас!»",
-            author: " Анна Краснова",
-            avatarSrc: avatar_4
-        }, {
-            text: "«Привет!" +
-                " Я начала пить сок Витграсса несколько месяцев назад и это изменило мою жизнь!" +
-                " У меня повысился уровень энергии и я чувствую себя намного лучше." +
-                " Кожа очистилась и стала намного свежее. Рекомендую всем»",
-            author: "Роман Фролов",
-            avatarSrc: avatar_5
-        }, {
+        },{
             text: "«Всем привет!" +
                 " Про смузи: семена чиа в смузи - это просто находка!" +
                 " Они добавляют текстуру и делают напиток более густым, питательным." +
@@ -94,6 +96,10 @@ export default function Home() {
             author: "Мария Брезнова",
             avatarSrc: avatar_6
         },
+
+    ]
+
+    const reviews_col_3 = [
         {
             text: "«Доброго дня, я без пп жить не могу!" +
                 " Я обожаю смузи с семенами льна!" +
@@ -171,7 +177,8 @@ export default function Home() {
                         </button>
                     </div>
 
-                    <div className="ph:relative lg:static lg:flex lg:flex-row lg:space-x-5"> {/* Добавлен контейнер с relative */}
+                    <div
+                        className="ph:relative lg:static lg:flex lg:flex-row lg:space-x-5"> {/* Добавлен контейнер с relative */}
                         <img
                             className="ph:border-[2vw] md:border-[1.2vw] border-white rounded-3xl ph:w-80 ph:h-auto md:w-[70vw] md:h-auto"
                             src={video_container}
@@ -298,49 +305,91 @@ export default function Home() {
                 </div>
             )}
 
-
-            <div className="flex flex-col items-center space-y-5">
-
+            <div className="flex flex-col items-center mt-24">
+                <h1 class={"text-2xl"}>Наши отзывы</h1>
                 {isMobile ? (
                     <>
                         {openComment ? (
 
-                            <>
+                            <div class={"space-y-4 mt-4"}>
 
-                                <ReviewCard reviews={reviews}/>
-                                <ReviewCard reviews={reviews_2}/>
+                                <ReviewCard reviews={reviews_col_1}/>
+                                <ReviewCard reviews={reviews_col_2}/>
+
                                 <button
-                                    className="bg-avocado rounded-lg w-[90%] h-12"
+                                    className="bg-avocado rounded-lg w-[100%] h-12"
                                     onClick={() => setOpenComment(false)}
                                 >
                                     Свернуть
                                 </button>
-                            </>
+                            </div>
 
                         ) : (
-                            <>
+                            <div class={"space-y-4 mt-4"}>
 
-                                <ReviewCard reviews={reviews}/>
+                                <ReviewCard reviews={reviews_col_3}/>
                                 <button
-                                    className="bg-avocado rounded-lg w-[90%] h-12"
+                                    className="bg-avocado rounded-lg w-[100%] h-12"
                                     onClick={() => setOpenComment(true)}
                                 >
                                     Смотреть ещё
                                 </button>
 
-                            </>
+                            </div>
                         )
                         }
                     </>
                 ) : isTablet ? (
-                    <div className="flex flex-row flex-wrap mt-20 mb-10">
-                        {/*<ReviewCard reviews={reviews}/>*/}
-                        <ReviewCard reviews={reviews_2}/>
+
+                    <div className="relative ph:overflow-x-hidden">
+
+                        <div
+                            className="flex flex-row p-10 space-x-5 ph:overflow-x-auto ph:pb-8 ph:-mx-10 ph:px-10 ph:snap-x ph:snap-mandatory ph:scrollbar-hide">
+                            <div className="flex flex-col space-y-5 ph:snap-start ph:flex-shrink-0 ph:pl-5">
+                                <ReviewCard reviews={reviews_col_1}/>
+                            </div>
+                            <div className="flex flex-col space-y-4 ph:snap-start ph:flex-shrink-0">
+                                <ReviewCard reviews={reviews_col_2}/>
+                            </div>
+                            <div className="flex flex-col space-y-4 ph:snap-start ph:flex-shrink-0">
+                                <ReviewCard reviews={reviews_col_3}/>
+                            </div>
+                        </div>
+
+                        {/* Более заметные градиенты */}
+                        <div className="absolute bottom-0 left-0 right-0 h-72 pointer-events-none"
+                             style={{
+                                 maskImage: 'radial-gradient(ellipse 250% 150% at 50% 100%, black 18%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 50%, transparent 70%)',
+                                 WebkitMaskImage: 'radial-gradient(ellipse 180% 120% at 50% 100%, black 25%, rgba(0,0,0,0.8) 35%, rgba(0,0,0,0.4) 55%, transparent 70%)',
+                                 backgroundColor: 'white'
+                             }}>
+                        </div>
                     </div>
                 ) : (
-                    <div className="flex flex-row flex-wrap mt-20 mb-20">
-                        <ReviewCard reviews={reviews_2}/>
+                    <div className="relative overflow-hidden ">
+                        <div className="flex flex-row p-10 space-x-5">
+                            <div className="flex flex-col space-y-5">
+                                <ReviewCard reviews={reviews_col_1}/>
+                            </div>
+                            <div className="flex flex-col space-y-4">
+                                <ReviewCard reviews={reviews_col_2}/>
+                            </div>
+                            <div className="flex flex-col space-y-4">
+                                <ReviewCard reviews={reviews_col_3}/>
+                            </div>
+                        </div>
+
+                        {/* Плотное затуманивание */}
+                        {/* Радиальное затуманивание */}
+                        <div className="absolute bottom-0 left-0 right-0 h-72 pointer-events-none"
+                             style={{
+                                 maskImage: 'radial-gradient(ellipse 250% 150% at 50% 100%, black 18%, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 50%, transparent 70%)',
+                                 WebkitMaskImage: 'radial-gradient(ellipse 180% 120% at 50% 100%, black 25%, rgba(0,0,0,0.8) 35%, rgba(0,0,0,0.4) 55%, transparent 70%)',
+                                 backgroundColor: 'white'
+                             }}>
+                        </div>
                     </div>
+
 
                 )}
 

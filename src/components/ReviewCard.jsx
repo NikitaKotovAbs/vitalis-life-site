@@ -19,7 +19,7 @@ const ReviewCard = ({
                 <>
                     {
                         displayReviews.map((review, index) => (
-                            <div key={index} className={`border  rounded-lg max-w-[90%] p-10  space-y-7 ${cardClassName}`}>
+                            <div key={index} className={`border  rounded-lg max-w-80 p-10  space-y-7 ${cardClassName}`}>
                                 <p className={`ph:text-xs ${textClassName}`}>
                                     {review.text}
                                 </p>
@@ -39,7 +39,7 @@ const ReviewCard = ({
                 <>
                     {
                         displayReviews.map((review, index) => (
-                            <div key={index} className={`border  rounded-lg max-w-[50%] p-10  space-y-7 ${cardClassName}`}>
+                            <div key={index} className={`border  rounded-lg max-w-80 p-10  space-y-7 ${cardClassName}`}>
                                 <p className={`ph:text-xs ${textClassName}`}>
                                     {review.text}
                                 </p>
@@ -59,7 +59,7 @@ const ReviewCard = ({
                 <>
                     {
                         displayReviews.map((review, index) => (
-                            <div key={index} className={`border  rounded-lg max-w-[50%] p-10  space-y-7 ${cardClassName}`}>
+                            <div key={index} className={`border  rounded-lg max-w-96 p-10  space-y-7 ${cardClassName}`}>
                                 <p className={`ph:text-xs ${textClassName}`}>
                                     {review.text}
                                 </p>

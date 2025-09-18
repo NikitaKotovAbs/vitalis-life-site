@@ -24,7 +24,7 @@ export default function PageNotFound() {
                     </Link>
                 </div>
             </div>
-            <div className="ph:w-40 md:w-[50%] mt-28 lg:w-auto"> {/* Добавлен контейнер с адаптивными размерами */}
+            <div className=" md:w-[50%] lg:w-auto"> {/* Добавлен контейнер с адаптивными размерами */}
                 <svg
                     width="834"
                     height="776"
