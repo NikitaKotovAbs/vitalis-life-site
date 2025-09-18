@@ -181,12 +181,15 @@ export default function Home() {
                             src={video_container}
                             alt="video_container"
                         />
-                        <button
-                            className="ph:absolute lg:static top-1/2 right-4 -translate-y-1/2 lg:translate-y-0 lg:mt-24 w-24 h-24 rounded-full bg-avocado "
-                            onClick={() => navigate(`/каталог`)}
-                        >
-                            Купить
-                        </button>
+                        {!isMobile && (
+                            <button
+                                className="ph:absolute lg:static top-1/2 right-4 -translate-y-1/2 lg:translate-y-0 lg:mt-24 w-24 h-24 rounded-full bg-avocado "
+                                onClick={() => navigate(`/каталог`)}
+                            >
+                                Купить
+                            </button>
+                        )}
+
                     </div>
 
 
@@ -394,7 +397,7 @@ export default function Home() {
             </div>
 
 
-            <div className={"flex ph:flex-col md:flex-row md:justify-around pt-24 ph:pl-4 md:pl-0"}>
+            <div className={"flex ph:flex-col md:flex-row md:justify-around p-4 pt-24 md:pl-0"}>
                 <div className={"flex flex-col space-y-5 md:max-w-[45vw]"}>
                     <h1 className={"text-3xl"}>Часто задаваемые вопросы</h1>
                     <p className={"text-deep-dark text-opacity-75 text-lg"}>Здесь вы найдете ответы на самые

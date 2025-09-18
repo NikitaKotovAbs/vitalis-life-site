@@ -48,7 +48,7 @@ const ExpandableMenu = ({
         className="flex flex-row items-center justify-between p-5 cursor-pointer hover:bg-gray-50 transition-colors"
         onClick={toggleMenu}
       >
-        <h2 className="ph:text-base lg:text-xl font-medium text-gray-800">
+        <h2 className="ph:text-base ph:max-w-60 lg:text-xl font-medium text-gray-800">
           {title}
         </h2>
         <button
