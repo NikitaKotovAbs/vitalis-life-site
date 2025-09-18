@@ -21,13 +21,11 @@ import ExpandableMenu from "../components/ExpandableMenu.jsx";
 import Arrow from "../assets/image/contacts/Arrow.svg";
 import useDeviceDetection from "../hooks/useDeviceDetection.js";
 import CategoryCard from "../components/CategotyCard.jsx";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+
 export default function Home() {
     const {isMobile, isLaptop} = useDeviceDetection();
     const navigate = useNavigate()
-    const handleCatalogClick = () => {
-        navigate(`/каталог`)
-    }
 
     const handleAboutUsClick = () => {
         navigate(`/о-нас`)
@@ -92,20 +90,33 @@ export default function Home() {
                         className={"flex md:flex-row md:justify-center md:space-x-10 ph:flex-col ph:w-full ph:px-5 ph:space-y-2 md:space-y-0"}>
                         <button
                             className={"bg-avocado rounded-lg md:w-24 md:h-11 ph:h-14"}
-                            onClick={handleCatalogClick}
+                            onClick={() => navigate(`/каталог`)}
                         >
                             Купить
                         </button>
                         <button
                             className={"border rounded-lg md:w-24 md:h-11 ph:h-14 "}
-                            onClick={handleAboutUsClick}
+                            onClick={() => navigate(`/о-нас`)}
                         >
                             Кто мы?
                         </button>
                     </div>
-                    <img
-                        className={" ph:border-[2vw] md:border-[1.2vw] border-white rounded-3xl ph:w-80 ph:h-auto md:w-[70vw] md:h-auto"}
-                        src={video_container} alt="video_container"/>
+
+                    <div className="ph:relative lg:static lg:flex lg:flex-row lg:space-x-5"> {/* Добавлен контейнер с relative */}
+                        <img
+                            className="ph:border-[2vw] md:border-[1.2vw] border-white rounded-3xl ph:w-80 ph:h-auto md:w-[70vw] md:h-auto"
+                            src={video_container}
+                            alt="video_container"
+                        />
+                        <button
+                            className="ph:absolute lg:static top-1/2 right-4 -translate-y-1/2 lg:translate-y-0 lg:mt-24 w-24 h-24 rounded-full bg-avocado "
+                            onClick={() => navigate(`/каталог`)}
+                        >
+                            Купить
+                        </button>
+                    </div>
+
+
                 </div>
 
                 <InfiniteScrollingText
@@ -169,11 +180,13 @@ export default function Home() {
             )}
 
 
-
             {/*<h1 className="text-xl">Все категории</h1>*/}
-            <CategoryCard title={"Соки из ростков и корней пшеницы"} description={"Укрепление здоровья"} imgMobile={category_card_mobile} img={category_card}/>
-            <CategoryCard title={"Топпинги"} description={"Разнообразие вкусов"} imgMobile={category_card_mobile_2} img={category_card_2}/>
-            <CategoryCard title={"Смузи"} description={"Расслабление и здоровье"} imgMobile={category_card_mobile_3} img={category_card_3}/>
+            <CategoryCard title={"Соки из ростков и корней пшеницы"} description={"Укрепление здоровья"}
+                          imgMobile={category_card_mobile} img={category_card}/>
+            <CategoryCard title={"Топпинги"} description={"Разнообразие вкусов"} imgMobile={category_card_mobile_2}
+                          img={category_card_2}/>
+            <CategoryCard title={"Смузи"} description={"Расслабление и здоровье"} imgMobile={category_card_mobile_3}
+                          img={category_card_3}/>
 
             {isMobile ? (
                 <div className="p-6 space-y-5 pt-10">
